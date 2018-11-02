@@ -1,0 +1,24 @@
+a : SINT;
+b : SINT;
+c : UINT32;
+d : UINT32;
+
+a := 20;
+b := 10;
+c := 5;
+
+a := a - b;
+b := a;
+
+c := c +u 5;
+(*
+d := 4294967296;
+d := d +u 1;
+*)
+b := 10;
+
+IF b <= 10 THEN
+  b := 4
+ELSE
+  b := 2
+END

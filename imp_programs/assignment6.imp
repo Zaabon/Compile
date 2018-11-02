@@ -1,0 +1,20 @@
+a : UINT32;
+b : UINT32;
+c : UINT32;
+d : UINT32;
+e : UINT32;
+f : UINT32;
+
+a := (1 +u 2) +u 3;
+b := (1 +u 2) -u 3;
+c := (a +u (1 +u 1)) -u (a +u 2);
+
+IF FALSE && TRUE THEN e := 1 END;
+IF TRUE && (TRUE && TRUE) THEN e := 1 END;
+IF ((a = b) && NOT(c = b)) && FALSE THEN e := 1 END;
+IF c = b && TRUE THEN e := 1 END;
+IF ((a = b) && NOT(c = b)) && ((a = b) && NOT(c = b)) THEN e := 1 END;
+
+IF TRUE THEN e := 1 ELSE f := 0 END;
+IF FALSE THEN e := 1 ELSE f := 0 END;
+WHILE FALSE DO d := e +u f DONE

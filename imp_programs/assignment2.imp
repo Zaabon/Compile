@@ -1,0 +1,27 @@
+a : SINT;
+b : SINT;
+c : UINT32;
+d : UINT32;
+
+a := 1;
+b := 2;
+c := 3;
+d := 4;
+
+c := 1 +u (a as UINT32);
+b := c as SINT;
+d := 3 -u 1;
+
+IF (c as SINT) < 5 THEN
+   a := 5
+END
+
+
+
+
+
+(*
+IF error THEN
+  another error
+END
+*)

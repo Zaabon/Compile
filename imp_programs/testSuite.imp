@@ -1,0 +1,53 @@
+a : SINT;
+b : SINT;
+c : SINT;
+d : UINT32;
+e : UINT32;
+
+f : UINT32;
+g : SINT;
+
+f := 2;
+a := 2;
+d := 3;
+e := 4;
+a := 1+2;
+b := a+1;
+
+
+f := 1 +u (a as UINT32);
+g := d as SINT;
+e := f -u e;
+
+IF (f as SINT) < 5 THEN
+   a := 5 + 2
+END;
+
+
+d := 1;
+
+e := d;
+
+IF TRUE && TRUE THEN
+  a := 5 + 2
+END;
+
+
+
+
+a := 20;
+b := 10;
+
+
+c := 5 + 2;
+c := a + b;
+c := c - 5;
+c := c + 75
+
+
+
+IF c <= 1 THEN
+  c := 3
+ELSE
+  a := 4
+END
