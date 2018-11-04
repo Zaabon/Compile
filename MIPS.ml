@@ -69,8 +69,8 @@ let of_instr b pc= function
   | Iaddur (term1, term2, sum)  -> "\tADDU \t$"^ of_idr sum ^", $"^ of_idr term1 ^", $"^ of_idr term2
   | Isubr (term1, term2, dif)   -> "\tSUB \t$"^ of_idr dif ^", $"^ of_idr term1 ^", $"^ of_idr term2
   | Isubur (term1, term2, dif)   -> "\tSUBU \t$"^ of_idr dif ^", $"^ of_idr term1 ^", $"^ of_idr term2
-  | Ibeqr(idr1, idr2, ofs)        -> "\tBEQ \t$"^ of_idr idr1 ^", $"^ of_idr idr2 ^", "^ (pc_ofs ofs (pc))
-  | Ibner (idr1, idr2, ofs)       -> "\tBNE \t$"^ of_idr idr1 ^", $"^ of_idr idr2 ^", "^ (pc_ofs ofs (pc+1))
+  | Ibeqr(idr1, idr2, ofs)        -> "\tBEQ \t$"^ of_idr idr1 ^", $"^ of_idr idr2 ^", L"^ (pc_ofs ofs (pc+1))
+  | Ibner (idr1, idr2, ofs)       -> "\tBNE \t$"^ of_idr idr1 ^", $"^ of_idr idr2 ^", L"^ (pc_ofs ofs (pc+1))
   | Ibler (idr1, idr2, ofs)       -> "\tSUB \t$t0, $"^ of_idr idr1 ^", $"^ of_idr idr2 ^"\n"^
                                      "\tBLEZ \t$t0, L"^ (pc_ofs ofs (pc+1))
   | Ibgtr (idr1, idr2, ofs)       -> "\tSUB \t$t0, $"^ of_idr idr1 ^", $"^ of_idr idr2 ^"\n"^
