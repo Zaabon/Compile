@@ -5,7 +5,6 @@ open Env
 open Common
 open Printf
   
-let file = "../MIPS/instructions.s"
 let startString = ".text           # .text segment (code)
 		.set noreorder	# necessary to avoid code optimization\n"
 let endString = "\nstop:		b stop
@@ -18,10 +17,8 @@ bytearr_heap:	.byte 0
                 .byte 3
 word_heap:      .word 0x00010203"  
 
-let writeThis = function
-  | instructions ->
+let writeThis outfile instructions= 
   let content = startString^instructions^endString in
-  (* Write message to file *)
-  let oc = open_out file in    (* create or truncate file, return channel *)
-  fprintf oc "%s\n" content;   (* write something *)   
-  close_out oc;                (* flush and close the channel *)
+  let oc = open_out outfile in  
+  fprintf oc "%s\n" content; 
+  close_out oc; 

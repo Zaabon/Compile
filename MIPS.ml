@@ -24,7 +24,7 @@ let of_idr = function
   | idr -> ""^string_of_int (9 + Z.to_int idr)
 
 let of_instr b pc= function
-  | Iconst v        -> "\tADDI \t$t0, $0, "^Z.to_string v^"\n"^
+  | Iconst v        -> "\tADDI \t$t0, $zero, "^Z.to_string v^"\n"^
                        move_sp (-1) ^
                        "\tSW \t$t0, 0($sp)"
   | Ivar id         -> "\tLW \t$t0, "^ of_id id ^"($gp)\n"^
@@ -51,15 +51,15 @@ let of_instr b pc= function
   | Ibne n          -> (pop "$t0" "$t1" 2)^
                        "\tBNE \t$t0, $t1, L"^ (pc_ofs n (pc+1))
   | Ible n          -> (pop "$t0" "$t1" 2)^
-                       "\tSUB \t$t0, $t0, $t1\n"^
+                       "\tSUB \t$t0, $t1, $t0\n"^
                        "\tBLEZ \t$t0, L"^ (pc_ofs n (pc+1))
   | Ibgt n          -> (pop "$t0" "$t1" 2)^
-                       "\tSUB \t$t0, $t0, $t1\n"^
+                       "\tSUB \t$t0, $t1, $t0\n"^
                        "\tBGTZ \t$t0, L"^ (pc_ofs n (pc+1))
   | Ihalt           -> "\tJ \tL"^ (pc_ofs Z.zero pc)
   | Iload (idr, id) -> "\tLW \t$t0, "^ of_id id ^"($gp)\n"^
-                       "\tADD \t$"^ of_idr idr ^", $0, $t0"
-  | Iimm (idr, n)   -> "\tADDI \t$"^ of_idr idr ^", $0, "^ Z.to_string n 
+                       "\tADD \t$"^ of_idr idr ^", $zero, $t0"
+  | Iimm (idr, n)   -> "\tADDI \t$"^ of_idr idr ^", $zero, "^ Z.to_string n 
   | Istore (idr, id)-> "\tSW \t$"^ of_idr idr ^", "^ of_id id ^"($gp)"
   | Ipushr (idr)    -> move_sp (-1) ^
                        "\tSW \t$"^ of_idr idr ^", 0($sp)"

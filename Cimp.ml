@@ -51,11 +51,10 @@ let () =
           Compile.compile_program com
       in
       let instructions = MIPS.of_code false 0 code in
-      if Options.opt.reg then (
-        WriteFile.writeThis instructions;
-        p_stderr ("Reg : \n" ^ instructions ^ nl)
-      );
+       WriteFile.writeThis Options.opt.outfile instructions;
 
+      if Options.opt.reg then
+        p_stderr ("Reg : \n" ^ instructions ^ nl);
       if Options.opt.d_code then
           p_stderr ("Raw Code : \n" ^ Dump.of_code false code ^ nl);
       if Options.opt.d_pcode then
